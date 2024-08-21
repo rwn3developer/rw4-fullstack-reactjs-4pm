@@ -1,10 +1,12 @@
-import ControlComponent from "./assets/ControlComponent"
+import ControlComponent from "./ControlComponent"
+import UncontrolComponent from "./UncontrolComponent"
 function App() {
  
 
   return (
       <>
-        <ControlComponent/>
+        {/* <ControlComponent/> */}
+        <UncontrolComponent/>
       </>
   )
 }
