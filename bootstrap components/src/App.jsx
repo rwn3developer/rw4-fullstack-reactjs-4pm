@@ -1,5 +1,5 @@
-import Navbarexample from "./Navbar"
-import BasicExample from "./Sliderexample"
+import Navbarexample from "./navbar/Navbar"
+import BasicExample from "./slider/Sliderexample"
 
 
 

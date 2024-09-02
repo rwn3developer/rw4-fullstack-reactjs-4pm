@@ -1,0 +1,28 @@
+/* navbar.module.css */
+.demo{
+    color: red;
+}
+p{
+    color: red;
+}
+.navbar {
+    background-color: #f8f9fa !important; /* Example color */
+  }
+  
+  .brand {
+    font-weight: bold;
+    color: #007bff;
+  }
+  
+  .navLink {
+    color: #343a40;
+  }
+  
+  .dropdown {
+    background-color: #f1f1f1;
+  }
+  
+  .dropdownItem {
+    color: #495057;
+  }
+  

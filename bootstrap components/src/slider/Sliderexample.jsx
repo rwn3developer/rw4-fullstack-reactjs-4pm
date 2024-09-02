@@ -1,8 +1,11 @@
 import Table from 'react-bootstrap/Table';
+import styles from './slider.module.css';
+
 
 function BasicExample() {
   return (
     <Table striped bordered hover>
+      <p className={styles.demo}>demo</p>
       <thead>
         <tr>
           <th>#</th>
