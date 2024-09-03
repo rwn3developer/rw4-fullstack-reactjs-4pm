@@ -5,15 +5,6 @@ function App() {
   const [name,setName] = useState("");
   const [phone,setPhone] = useState("");
 
-  // const getRecord = () => {
-    let data = JSON.parse(localStorage.getItem('users')) ? JSON.parse(localStorage.getItem('users')) : [];
-    // if(data){
-    //   return JSON.parse(data);
-    // }else{
-    //   return [];
-    // }
-  //     return JSON.parse(localStorage.getItem('users')) ? JSON.parse(localStorage.getItem('users')) : []
-  // }
 
   const [record,setRecord] = useState(JSON.parse(localStorage.getItem('users')) || []);
 
@@ -41,6 +32,13 @@ function App() {
   
   }
 
+  const handleDelete = (id) => {
+      let d = record.filter(val => val.userid != id);
+      setRecord(d);
+      localStorage.setItem('users',JSON.stringify(d));
+      alert("record delete  ")
+  }
+
   return (
     <div align="center">
       <h2>Add User</h2>
@@ -61,7 +59,34 @@ function App() {
                 </td>
               </tr>
           </table>
-      </form>
+      </form><br></br><br></br>
+      <table border={1}>
+            <thead>
+              <tr>
+                <th>Sr.No</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <td>Action</td>
+              </tr>
+            </thead>
+            <tbody>
+                {
+                  record.map((val,index)=>{
+                    const {userid,name,phone} = val;
+                    return (
+                      <tr>
+                        <td>{index+1}</td>
+                        <td>{name}</td>
+                        <td>{phone}</td>
+                        <td>
+                          <button onClick={ () => handleDelete(userid) }><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                      </tr>
+                    )
+                  })
+                }
+            </tbody>
+      </table>
     </div>
   )
 }
