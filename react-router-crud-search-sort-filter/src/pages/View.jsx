@@ -13,22 +13,47 @@ const navigate = useNavigate();
    JSON.parse(localStorage.getItem("users")) || []
  );
 
- useEffect(()=>{
-    if(sort != ""){
-      if(sort == "asc"){
-          setFilter([...record].sort((a, b) => a.name.localeCompare(b.name))); 
-      }else if("dsc"){
-        setFilter([...record].sort((a, b) => b.name.localeCompare(a.name)));
-      } else{
-        setFilter([...record]);
-      }
-    } 
+//  useEffect(()=>{
+//   let sorted;
+//     if(sort != ""){
+//       if(sort == "asc"){
+//           setFilter([...record].sort((a, b) => a.name.localeCompare(b.name))); 
+//       }else if("dsc"){
+//         setFilter([...record].sort((a, b) => b.name.localeCompare(a.name)));
+//       } else{
+//         setFilter([...record]);
+//       }
+//     } 
 
-    if(search != ""){
-      const filtered = record.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()));
-      setFilter(filtered);
-    }
- },[sort,search])
+//     if(search != ""){
+//       const filtered = record.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()));
+//       setFilter(filtered);
+//     }
+//  },[sort,search])
+
+
+useEffect(() => {
+  let updatedRecords = [...record];
+
+  // Apply filtering first
+  if (search !== "") {
+    updatedRecords = updatedRecords.filter((item) =>
+      item.name.toLowerCase().includes(search.toLowerCase())
+    );
+  }
+
+  // Apply sorting
+  if (sort === "asc") {
+    updatedRecords.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (sort === "dsc") {
+    updatedRecords.sort((a, b) => b.name.localeCompare(a.name));
+  }
+
+  // Update the filter state with the sorted and filtered records
+  setFilter(updatedRecords);
+}, [sort, search]);
+
+
 
 
 
