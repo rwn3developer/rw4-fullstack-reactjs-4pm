@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const View = () => {
+
+  const navigate = useNavigate();
 
  const [record, setRecord] = useState(
    JSON.parse(localStorage.getItem("users")) || []
@@ -17,6 +19,7 @@ const View = () => {
             <th>Srno</th>
             <th>Name</th>
             <th>Phone</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -28,6 +31,9 @@ const View = () => {
                      <td>{userid}</td>
                      <td>{name}</td>
                      <td>{phone}</td>
+                     <td>
+                        <button onClick={ () => navigate(`/edit`,{state : val}) }>Edit</button>
+                     </td>
                    </tr>
                  );
                })

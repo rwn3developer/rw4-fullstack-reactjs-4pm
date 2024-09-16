@@ -2,14 +2,13 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 
 const Add = () => {
-
- const [name,setName] = useState("");
+  const [name,setName] = useState("");
  const [phone, setPhone] = useState("");
  const [record,setRecord] = useState(JSON.parse(localStorage.getItem("users")) || [])
 
  const handleSubmit = (e) => {
   e.preventDefault();
-   
+  
   let obj = {
      userid : Math.floor(Math.random()*10000),
      name : name,
