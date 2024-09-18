@@ -5,6 +5,8 @@ const View = () => {
 
   const [sort,setSort] = useState("");
   const [search,setSearch] = useState("");
+  const [status, setStatus] = useState("");
+
   const [filter,setFilter] = useState([])
 
 const navigate = useNavigate();
@@ -30,13 +32,39 @@ useEffect(() => {
     updatedRecords.sort((a, b) => b.name.localeCompare(a.name));
   }
 
+  if(status ==  "active"){
+    updatedRecords = updatedRecords.filter((item) => item.status === "active")
+    }else if(status == "deactive"){
+      updatedRecords = updatedRecords.filter((item) => item.status === "deactive")
+    }
+
   // Update the filter state with the sorted and filtered records
   setFilter(updatedRecords);
-}, [sort, search]);
+}, [sort, search,status]);
 
 
 
-
+  const statusChange = (st,id) => {
+      if(st == "deactive"){
+          let up = record.map((val)=>{
+            if(val.userid == id){
+              val.status = "active"
+            }
+            return val;
+          })
+          localStorage.setItem('users',JSON.stringify(up))
+          setRecord(up);
+      }else{
+        let up = record.map((val)=>{
+            if(val.userid == id){
+              val.status = "deactive"
+            }
+            return val;
+          })
+          localStorage.setItem("users", JSON.stringify(up));
+          setRecord(up);
+      }
+  }
 
   return (
     <div align="center">
@@ -52,7 +80,18 @@ useEffect(() => {
         type="text"
         onChange={(e) => setSearch(e.target.value)}
         value={search}
-      /><br></br><br></br>
+      />
+      <br></br>
+      <br></br>
+
+      <select onChange={ (e) => setStatus(e.target.value) }>
+        <option value="">Select Status</option>
+        <option value="active">Active</option>
+        <option value="deactive">Deactive</option>
+      </select>
+      <br></br>
+      <br></br>
+
       <table border={1}>
         <thead>
           <tr>
@@ -67,17 +106,28 @@ useEffect(() => {
           {filter.length === 0 ? (
             <>
               {record.map((val) => {
-                console.log(val);
-                
                 const { userid, name, phone, status } = val;
                 return (
                   <tr key={userid}>
                     <td>{userid}</td>
                     <td>{name}</td>
                     <td>{phone}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    {status == "active" ? (
+                      <td
+                        onClick={() => statusChange(status, userid)}
+                        style={{ color: "green" }}
+                      >
+                        {status}
+                      </td>
+                    ) : (
+                      <td
+                        onClick={() => statusChange(status, userid)}
+                        style={{ color: "red" }}
+                      >
+                        {status}
+                      </td>
+                    )}
+
                     <td>
                       <button onClick={() => navigate(`/edit`, { state: val })}>
                         Edit
@@ -90,12 +140,28 @@ useEffect(() => {
           ) : (
             <>
               {filter.map((val) => {
-                const { userid, name, phone } = val;
+                const { userid, name, phone, status } = val;
                 return (
                   <tr key={userid}>
                     <td>{userid}</td>
                     <td>{name}</td>
                     <td>{phone}</td>
+                    {status == "active" ? (
+                      <td
+                        onClick={() => statusChange(status, userid)}
+                        style={{ color: "green" }}
+                      >
+                        {status}
+                      </td>
+                    ) : (
+                      <td
+                        onClick={() => statusChange(status, userid)}
+                        style={{ color: "red" }}
+                      >
+                        {status}
+                      </td>
+                    )}
+
                     <td>
                       <button onClick={() => navigate(`/edit`, { state: val })}>
                         Edit
