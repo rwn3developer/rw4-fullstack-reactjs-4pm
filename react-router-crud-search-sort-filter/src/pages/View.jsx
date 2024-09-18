@@ -48,13 +48,18 @@ useEffect(() => {
       </select>
       <br></br>
       <br></br>
-      <input type='text' onChange={ (e) => setSearch(e.target.value) }  value={search}/>
+      <input
+        type="text"
+        onChange={(e) => setSearch(e.target.value)}
+        value={search}
+      /><br></br><br></br>
       <table border={1}>
         <thead>
           <tr>
             <th>Srno</th>
             <th>Name</th>
             <th>Phone</th>
+            <th>Status</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -62,12 +67,17 @@ useEffect(() => {
           {filter.length === 0 ? (
             <>
               {record.map((val) => {
-                const { userid, name, phone } = val;
+                console.log(val);
+                
+                const { userid, name, phone, status } = val;
                 return (
                   <tr key={userid}>
                     <td>{userid}</td>
                     <td>{name}</td>
                     <td>{phone}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td>
                       <button onClick={() => navigate(`/edit`, { state: val })}>
                         Edit

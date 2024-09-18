@@ -12,7 +12,8 @@ const Add = () => {
   let obj = {
      userid : Math.floor(Math.random()*10000),
      name : name,
-     phone : phone
+     phone : phone,
+     status : "deactive"
   }
   
   let newfield = [...record,obj];
