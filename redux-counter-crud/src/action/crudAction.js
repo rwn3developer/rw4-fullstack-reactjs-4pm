@@ -4,3 +4,17 @@ export const AddUser = (data) => {
         payload: data
     }
 }
+
+export const DeleteUser = (id) => {
+    return {
+        type: 'delete',
+        payload: id
+    }
+}
+
+export const UpdateUser = (data) => {
+    return {
+        type: 'update',
+        payload: data
+    }
+}

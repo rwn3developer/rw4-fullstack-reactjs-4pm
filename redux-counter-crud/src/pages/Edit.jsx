@@ -1,13 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { AddUser } from "../action/crudAction";
-import { useNavigate } from "react-router-dom";
+import { AddUser, UpdateUser } from "../action/crudAction";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const Add = () => {
+const Edit = () => {
+    const location = useLocation();
     const navigate = useNavigate();
     const [name, setName] = useState("")
     const [phone, setPhone] = useState("")
+    const [editid, setEditId] = useState("");
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        setName(location?.state?.name)
+        setPhone(location?.state?.phone)
+        setEditId(location?.state?.id)
+    }, [location?.state])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -18,19 +26,19 @@ const Add = () => {
         }
 
         let obj = {
-            id: Math.floor(Math.random() * 100000),
+            id: editid,
             name: name,
             phone: phone
         }
 
-        dispatch(AddUser(obj))
-        alert("record add")
+        dispatch(UpdateUser(obj))
+        alert("record update")
         navigate('/crud')
     }
 
     return (
         <div align="center">
-            <h2>Add Record</h2>
+            <h2>Edit Record</h2>
             <form onSubmit={handleSubmit}>
                 <table border={1}>
                     <tr>
@@ -51,4 +59,4 @@ const Add = () => {
     )
 }
 
-export default Add;
+export default Edit;
