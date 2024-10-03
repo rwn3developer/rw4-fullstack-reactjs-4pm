@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 const Add = () => {
@@ -6,6 +6,7 @@ const Add = () => {
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
     const navigate = useNavigate()
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -26,6 +27,9 @@ const Add = () => {
             return false;
         }
     }
+
+    
+
     return (
         <div align="center">
             <h2>Add User</h2>

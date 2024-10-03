@@ -1,0 +1,74 @@
+{
+  "users": [
+    {
+      "name": "jayla",
+      "phone": "212122",
+      "id": "f0fd"
+    },
+    {
+      "name": "krishna",
+      "phone": "6656",
+      "id": "d4e0"
+    }
+  ],
+  "country": [
+    {
+      "id": "31b9",
+      "country": "india"
+    },
+    {
+      "id": "cda1",
+      "country": "u.k"
+    },
+    {
+      "id": "b661",
+      "country": "chine"
+    },
+    {
+      "id": "0fe2",
+      "country": "africa"
+    }
+  ],
+  "state": [
+    {
+      "id": "43b6",
+      "countryId": "31b9",
+      "state": "gujarat"
+    },
+    {
+      "id": "61ec",
+      "countryId": "31b9",
+      "state": "maharashtra"
+    },
+    {
+      "id": "fab7",
+      "countryId": "b661",
+      "state": "hongkong"
+    },
+    {
+      "id": "e0db",
+      "countryId": "cda1",
+      "state": "london"
+    },
+    {
+      "id": "b7d5",
+      "countryId": "0fe2",
+      "state": "ethopia"
+    },
+    {
+      "id": "6700",
+      "countryId": "cda1",
+      "state": "uk_state_a"
+    },
+    {
+      "id": "1b15",
+      "countryId": "b661",
+      "state": "china_state_a"
+    },
+    {
+      "id": "6877",
+      "countryId": "0fe2",
+      "state": "africa_state_a"
+    }
+  ]
+}

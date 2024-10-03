@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const View = () => {
-
+    const navigate = useNavigate();
     const [record, setRecord] = useState([]);
     // const [cont, setCont] = useState([]);
 
     const getRecord = async () => {
         try {
-            let data = await fetch(`http://localhost:8000/users`);
+            let data = await fetch(`http://localhost:8000/users`, {
+                method: "GET"
+            });
             let res = await data.json();
             setRecord(res)
         } catch (err) {
@@ -71,7 +73,9 @@ const View = () => {
                                     <td>{name}</td>
                                     <td>{phone}</td>
                                     <td>
-                                        <button onClick={() => userDelete(id)}>Delete</button>
+                                        <button onClick={() => userDelete(id)}>Delete</button>&nbsp;
+                                        <button onClick={() => navigate(`/edit`, { state: r })}>Edit</button>
+
                                     </td>
                                 </tr>
                             )
@@ -101,7 +105,8 @@ const View = () => {
                     }
                 </tbody>
             </table> */}
-            <Link to={`/add`}>Add</Link>
+            <Link to={`/add`}>Add</Link>&nbsp;
+            <Link to={`/dynamic`}>Dynamic</Link>
         </div>
     )
 }
