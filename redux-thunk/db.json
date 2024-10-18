@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "id": "b809",
+      "name": "jay",
+      "email": "jay@gmail.com",
+      "password": "12345",
+      "phone": "12344566",
+      "city": "surat"
+    },
+    {
+      "id": "ce85",
+      "name": "kiran",
+      "email": "kiran@gmail.com",
+      "password": "123456",
+      "phone": "898989",
+      "city": "surat"
+    },
+    {
+      "id": "d8a8",
+      "name": "abhi",
+      "email": "abhishek@gmail.com",
+      "password": "1234",
+      "phone": "6565656",
+      "city": "rajkot"
+    }
+  ]
+}

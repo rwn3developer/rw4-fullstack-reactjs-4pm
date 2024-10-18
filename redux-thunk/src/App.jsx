@@ -4,11 +4,15 @@ import Home from "./pages/users/Home"
 import Dashboard from "./pages/admin/Dashboard"
 import Users from "./pages/admin/User"
 import Product from "./pages/admin/Product"
+import Login from "./pages/Login"
+import Register from "./pages/Register"
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/" element={<Home />} />
 
 
