@@ -23,7 +23,8 @@ const Register = () => {
                     email: email,
                     password: password,
                     phone: phone,
-                    city: city
+                    city: city,
+                    role: "user"
                 })
             })
             let res = await response.json();

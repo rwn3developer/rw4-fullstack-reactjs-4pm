@@ -17,6 +17,15 @@ const Header = () => {
                             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                                     <li className="nav-item">
+
+                                        <Link to={`/login`} className="nav-link mx-3 active text-white" aria-current="page">
+
+                                            <button className='btn btn-warning btn-sm'>Logout</button>
+                                        </Link>
+
+
+                                    </li>
+                                    <li className="nav-item">
                                         <Link to={`/login`} className="nav-link mx-3 active text-white" aria-current="page">Login</Link>
                                     </li>
                                     <li className="nav-item">

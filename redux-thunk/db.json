@@ -6,7 +6,8 @@
       "email": "jay@gmail.com",
       "password": "12345",
       "phone": "12344566",
-      "city": "surat"
+      "city": "surat",
+      "role": "admin"
     },
     {
       "id": "ce85",
@@ -14,7 +15,8 @@
       "email": "kiran@gmail.com",
       "password": "123456",
       "phone": "898989",
-      "city": "surat"
+      "city": "surat",
+      "role": "user"
     },
     {
       "id": "d8a8",
@@ -22,7 +24,12 @@
       "email": "abhishek@gmail.com",
       "password": "1234",
       "phone": "6565656",
-      "city": "rajkot"
+      "city": "rajkot",
+      "role": "user"
     }
-  ]
+  ],
+  "products": [],
+  "carts": [],
+  "contact": [],
+  "order": []
 }

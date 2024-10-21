@@ -1,8 +1,38 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../component/Header'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
+    const navigate = useNavigate()
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            let response = await fetch(`http://localhost:8000/users?email=${email}&password=${password}`, {
+                method: 'GET'
+            });
+            let res = await response.json();
+            localStorage.setItem("user", JSON.stringify(res[0]));
+            if (res.length == 0) {
+                toast.error("Both are not valid")
+            } else {
+                if (res[0].role == "admin") {
+                    navigate('/admin')
+                } else {
+                    navigate('/')
+                }
+            }
+        } catch (err) {
+            console.log(err);
+            return false;
+        }
+
+    }
+
     return (
         <>
             <Header />
@@ -11,15 +41,15 @@ const Login = () => {
                     <div className="card">
                         <h5 className="card-header">User Login</h5>
                         <div className="card-body">
-                            <form>
+                            <form onSubmit={handleSubmit}>
                                 <div className="mb-3">
                                     <label htmlFor="exampleInputEmail1" className="form-label">Email</label>
-                                    <input type="email" className="form-control" />
+                                    <input type="email" onChange={(e) => setEmail(e.target.value)} value={email} className="form-control" />
 
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                                    <input type="password" className="form-control" />
+                                    <input type="password" onChange={(e) => setPassword(e.target.value)} value={password} className="form-control" />
                                 </div>
 
                                 <button type="submit" className="btn btn-primary">Submit</button>
@@ -35,6 +65,7 @@ const Login = () => {
 
                 </div>
             </div>
+            <ToastContainer />
         </>
     )
 }
