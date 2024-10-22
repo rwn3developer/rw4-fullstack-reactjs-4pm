@@ -3,11 +3,13 @@ import Header from '../component/Header'
 import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
     const navigate = useNavigate()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [auth, setAuth] = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -17,6 +19,10 @@ const Login = () => {
             });
             let res = await response.json();
             localStorage.setItem("user", JSON.stringify(res[0]));
+            setAuth({
+                ...auth,
+                user: res[0]
+            })
             if (res.length == 0) {
                 toast.error("Both are not valid")
             } else {

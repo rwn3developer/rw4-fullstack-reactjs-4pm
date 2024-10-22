@@ -1,8 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
 
 
 const Header = () => {
+
+    const [auth, setAuth] = useAuth();
+
     return (
         <>
 
@@ -16,21 +20,29 @@ const Header = () => {
                             </button>
                             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-                                    <li className="nav-item">
-
-                                        <Link to={`/login`} className="nav-link mx-3 active text-white" aria-current="page">
-
-                                            <button className='btn btn-warning btn-sm'>Logout</button>
-                                        </Link>
 
 
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link to={`/login`} className="nav-link mx-3 active text-white" aria-current="page">Login</Link>
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link to={`/register`} className="nav-link mx-3 active text-white" aria-current="page">Register</Link>
-                                    </li>
+                                    {
+                                        auth?.user ? (
+                                            <li className="nav-item">
+                                                <Link to={`/login`} className="nav-link mx-3 active text-white" aria-current="page">
+
+                                                    <button className='btn btn-warning btn-sm'>Logout</button>
+                                                </Link>
+                                            </li>
+                                        ) : (
+                                            <>
+                                                <li className="nav-item">
+                                                    <Link to={`/login`} className="nav-link mx-3 active text-white" aria-current="page">Login</Link>
+                                                </li>
+                                                <li className="nav-item">
+                                                    <Link to={`/register`} className="nav-link mx-3 active text-white" aria-current="page">Register</Link>
+                                                </li>
+                                            </>
+                                        )
+                                    }
+
+
                                     <li className="nav-item">
                                         <Link to={`/`} className="nav-link mx-3 active text-white" aria-current="page">Home</Link>
                                     </li>
