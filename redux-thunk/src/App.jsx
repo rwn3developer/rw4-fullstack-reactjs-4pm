@@ -6,6 +6,8 @@ import Users from "./pages/admin/User"
 import Product from "./pages/admin/Product"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
+import AdminRoute from "./privateRoute/adminRoute"
+
 
 function App() {
   return (
@@ -17,9 +19,11 @@ function App() {
 
 
         {/* admin route */}
-        <Route path="/admin" element={<Dashboard />} />
-        <Route path="/admin/users" element={<Users />} />
-        <Route path="/admin/product" element={<Product />} />
+        <Route path="/admin" element={<AdminRoute />}>
+          <Route path="/admin" element={<Dashboard />} />
+          <Route path="/admin/users" element={<Users />} />
+          <Route path="/admin/product" element={<Product />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   )

@@ -1,11 +1,22 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
 
 const Header = () => {
 
     const [auth, setAuth] = useAuth();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.removeItem('users');
+        setAuth({
+            ...auth,
+            user: null
+        })
+        alert("User Logout")
+        navigate('/login')
+    }
 
     return (
         <>
@@ -20,14 +31,12 @@ const Header = () => {
                             </button>
                             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-
-
                                     {
                                         auth?.user ? (
                                             <li className="nav-item">
                                                 <Link to={`/login`} className="nav-link mx-3 active text-white" aria-current="page">
 
-                                                    <button className='btn btn-warning btn-sm'>Logout</button>
+                                                    <button onClick={() => handleLogout()} className='btn btn-warning btn-sm'>Logout</button>
                                                 </Link>
                                             </li>
                                         ) : (
